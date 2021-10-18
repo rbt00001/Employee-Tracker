@@ -6,11 +6,10 @@ USE tracker_db;
 
 CREATE TABLE department (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  _name VARCHAR(30) NOT NULL
+  name_ VARCHAR(30) NOT NULL
 )
 
-CREATE TABLE _role (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE role_ (
   title VARCHAR(30) NOT NULL,
   salary DECIMAL (6,2),
   department_id INT NOT NULL,
