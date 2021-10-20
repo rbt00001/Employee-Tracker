@@ -1,11 +1,15 @@
-USE EmployeeTracker_db;
+USE tracker_db;
 
-insert into department (id, name_) 
+INSERT INTO department (id, name_) 
 
-VALUES ("id"), ("CEO"), ("Product Manager"), ("Web Developer"), ("Party Planning Committee");
+VALUES 
+    (01, "CEO"), 
+    (02, "Product Manager"), 
+    (03, "Web Developer"), 
+    (04, "Party Planning Committee");
 
 
-insert into role_ (title, salary, department_id)
+INSERT INTO role_ (title, salary, department_id)
 
 VALUES 
 ("CEO", 225000, 01),
@@ -14,7 +18,7 @@ VALUES
 ("Party Planning Committee", 30000, 03);
 
 
-insert into employee (id, first_name, last_name, _role_id, manager_id)
+INSERT INTO employee (id, first_name, last_name, _role_id, manager_id)
 
 VALUES
 (01, "David", "Wallace" 01, 01),
