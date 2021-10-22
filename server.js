@@ -1,8 +1,8 @@
 const mysql = require("mysql2");
-// const { allowedNodeEnvironmentFlags, exit } = require("process");
+const inquirer = require("inquirer")
 require("dotenv").config();
 require("console.table");
-const inquirer = require("inquirer")
+
 
 
 const connection = mysql.createConnection({
@@ -76,4 +76,64 @@ connection.connect(function(err) {
          })
         displayMenu();
      
- }
+ };
+
+    function viewEmployees() {
+        connection.query(
+            "SELECT * FROM employee", function (err, res){
+                console.table(res);
+            }
+        );
+        displayMenu();
+    };
+
+
+    addEmployee = () => {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "Please enter employee first name.",
+              name: "employeeFirstName",
+            },
+      
+            {
+              type: "input",
+              message: "Please enter employee last name.",
+              name: "employeeLastName",
+            },
+      
+            {
+              type: "list",
+              message: "Select employee role.",
+              choices: ["Engineer", "Salesperson", "Account Manager", "Lawyer"],
+              name: "newEmployeeRole",
+            },
+            {
+              type: "input",
+              message: "Enter manager name",
+              name: "newEmployeeManager",
+            },
+          ])
+          .then((data) => {
+            let id = 1;
+            let managerId = 1;
+            let roleId = 1;
+            let first = data.employeeFirstName;
+            let last = data.employeeLastName;
+            db.query(
+              `INSERT INTO employee
+              (id,first_name, last_name, role_id, manager_id)
+                  SET = ?`,
+              id,
+              first,
+              last,
+              roleId,
+              managerId
+            );
+            console.log(
+              `${data.employeeFirstName} ${data.employeeLastName} has been added to the database.`
+            );
+            runEmployeeManager();
+          });
+      };
